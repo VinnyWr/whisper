@@ -108,5 +108,11 @@ body {
 }
 
 .mainSection > div {
-  width: 800px;
+  width: 75vw;
+  max-width: 40em;
+}
+
+.badge-primary {
+  color: white;
+  background-color: #111;
 }
