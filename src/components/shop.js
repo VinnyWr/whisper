@@ -17,9 +17,17 @@ const mapDispatchToProps = dispatch => {
 const Shop = props => (
   <div>
     <h1 className="cover-heading">Secrets..........</h1>
-
+    <button
+      className="btn btn-secondary"
+      onClick={() => props.history.push("/create")}
+    >
+      new Secret
+    </button>
     {props.secrets.map(s => (
-      <div className="row d-flex justify-content-between" key={s.id}>
+      <div
+        className="row d-flex justify-content-between form-group"
+        key={s._id}
+      >
         {s.title}
         <button
           className="btn btn-default"
