@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { AddToCart } from "../actions/actions";
+import { AddToCart, DeleteSecret, SetEditId } from "../actions/actions";
 
 const mapStateToProps = state => {
   return {
@@ -10,7 +10,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddToCart: secret => dispatch(AddToCart(secret))
+    onAddToCart: secret => dispatch(AddToCart(secret)),
+    onDeleteSecret: id => dispatch(DeleteSecret(id)),
+    onSetEditId: id => dispatch(SetEditId(id))
   };
 };
 
@@ -29,12 +31,29 @@ const Shop = props => (
         key={s._id}
       >
         {s.title}
-        <button
-          className="btn btn-default"
-          onClick={() => props.onAddToCart(s)}
-        >
-          ${s.price}
-        </button>
+        <div>
+          <button
+            className="btn btn-default"
+            onClick={() => props.onAddToCart(s)}
+          >
+            ${s.price}
+          </button>
+          <button
+            className="btn btn-danger"
+            onClick={() => props.onDeleteSecret(s._id)}
+          >
+            Redact
+          </button>
+          <button
+            className="btn btn-info"
+            onClick={() => {
+              props.onSetEditId(s._id);
+              props.history.push("/edit");
+            }}
+          >
+            Edit
+          </button>
+        </div>
       </div>
     ))}
   </div>
